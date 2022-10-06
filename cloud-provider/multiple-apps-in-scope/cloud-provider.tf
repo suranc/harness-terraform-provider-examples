@@ -1,5 +1,3 @@
-//local scopes{}
-
 data "harness_application" "myapps" {
   for_each = toset( var.apps )
   name = each.key
