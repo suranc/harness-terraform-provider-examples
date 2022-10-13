@@ -24,10 +24,3 @@ resource "harness_user_group" "app_developer" {
     }
   }
 }
-
-#output "app_ids" {
-#    value = [
-#        for app in data.harness_application.myapps:
-#        app.id
-#    ]
-#}
