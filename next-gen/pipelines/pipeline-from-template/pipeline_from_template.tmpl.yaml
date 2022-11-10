@@ -1,0 +1,53 @@
+pipeline:
+  name: ${pipeline_name}
+  identifier: ${pipeline_id}
+  template:
+    templateRef: account.Build_and_Deploy
+    versionLabel: 1.0.0
+    templateInputs:
+      properties:
+        ci:
+          codebase:
+            connectorRef: ${codebase_connector}
+            repoName: ${codebase_repo}
+            build: <+input>
+      stages:
+        - stage:
+            identifier: Build_Image
+            type: CI
+            spec:
+              execution:
+                steps:
+                  - step:
+                      identifier: Build_Image
+                      type: BuildAndPushDockerRegistry
+                      spec:
+                        repo: ${docker_repo}
+        - stage:
+            identifier: Deploy_Image
+            type: Deployment
+            spec:
+              service:
+                serviceRef: ${service_id}
+                serviceInputs:
+                  serviceDefinition:
+                    type: Kubernetes
+                    spec:
+                      artifacts:
+                        primary:
+                          primaryArtifactRef: ${primary_artifact_id}
+                          sources:
+                            - identifier: ${primary_artifact_id}
+                              type: DockerRegistry
+                              spec:
+                                tag: <+pipeline.stages.Build_Image.spec.execution.steps.Build_Image.artifact_Build_Image.stepArtifacts.publishedImageArtifacts[0].tag>
+              environment:
+                environmentRef: ${env_id}
+                infrastructureDefinitions:
+                  - identifier: ${infra_id}
+  tags: {}
+  projectIdentifier: ${project_id}
+  orgIdentifier: ${org_id}
+  connectorRef: ""
+  storeType: INLINE
+

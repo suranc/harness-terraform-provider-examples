@@ -10,3 +10,7 @@ This is a collection of some example code targeting common scenarios encountered
   * [Create a group with multiple applications getting differing sets of app permissions](first-gen/user-group/add-multiple-apps-with-different-perms)
 * Cloud Providers
   * [Create cloud provider with multiple apps in scope](first-gen/cloud-provider/multiple-apps-in-scope)
+
+### Next Gen
+* Pipelines
+  * [Pipeline From Template](next-gen/pipelines/pipeline-from-template)
