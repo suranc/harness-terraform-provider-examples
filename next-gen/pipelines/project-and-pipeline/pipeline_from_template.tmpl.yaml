@@ -1,0 +1,30 @@
+pipeline:
+  name: ${pipeline_name}
+  identifier: ${pipeline_id}
+  projectIdentifier: ${project_id}
+  orgIdentifier: ${org_id}
+  tags: {}
+  stages:
+    - stage:
+        name: echo
+        identifier: echo
+        description: ""
+        type: Custom
+        spec:
+          execution:
+            steps:
+              - step:
+                  type: ShellScript
+                  name: echo
+                  identifier: echo
+                  spec:
+                    shell: Bash
+                    onDelegate: true
+                    source:
+                      type: Inline
+                      spec:
+                        script: echo echoing
+                    environmentVariables: []
+                    outputVariables: []
+                  timeout: 10m
+        tags: {}

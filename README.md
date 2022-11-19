@@ -14,3 +14,4 @@ This is a collection of some example code targeting common scenarios encountered
 ### Next Gen
 * Pipelines
   * [Pipeline From Template](next-gen/pipelines/pipeline-from-template)
+  * [Create a Project and Pipeline inside of it](next-gen/pipelines/project-and-pipeline)
